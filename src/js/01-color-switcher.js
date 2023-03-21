@@ -6,10 +6,14 @@ const styleBody = document.querySelector('body')
 
 let intervalId = null;
 
-btnStart.addEventListener('click', () => {
-  if (btnStart.disabled = true){
+function onBtnChange(boolean) {
+  btnStart.disabled = true
     btnStop.disabled = false
-  }
+}
+
+btnStart.addEventListener('click', () => {
+ onBtnChange(boolean);
+  
 intervalId = setInterval(changeColor, 1000);
  })
 
@@ -18,9 +22,9 @@ function changeColor() {
 }
 
 btnStop.addEventListener('click', () => {
-  if (btnStop.disabled = true){
-    btnStart.disabled = false
-  }
+  onBtnChange(!boolean);
+
+  
  clearInterval(intervalId)
 
 })

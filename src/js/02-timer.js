@@ -45,10 +45,10 @@ const options = {
     defaultDate: Date.now(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-      if (selectedDates[0] <= Date.now()) {
+      if (selectedDates <= Date.now()) {
         refs.startBtn.disabled = true;
         Notify.failure('Please choose a date in the future');
-        selectedDates[0] = new Date();
+   
       } else {
         refs.startBtn.disabled = false;
         selectedTime = selectedDates[0];
@@ -76,6 +76,7 @@ updateTimer(timeComponents)
 
 if(deltaTime <= 0){
   this.stop()
+ 
 }
     },  1000)
 
@@ -85,16 +86,19 @@ if(deltaTime <= 0){
     clearInterval(this.intervalId)
     this.isActiv = false
     refs.startBtn.disabled = true;
-    refs.days.textContent = `00`;
-    refs.hours.textContent =` 00`;
-    refs.minutes.textContent =` 00`;
-    refs.seconds.textContent = `00`;
+    const { days, hours, minutes, seconds } = refs;
+    days.textContent = '00';
+    hours.textContent = '00';
+    minutes.textContent = '00';
+    seconds.textContent = '00';
+
+
   }
 
 
 }
 
- function updateTimer({ days, hours, minutes, seconds }) {
+ function updateTimer({ days, hours, minutes, seconds}) {
     refs.days.textContent = days;
     refs.hours.textContent = hours;
     refs.minutes.textContent = minutes;
